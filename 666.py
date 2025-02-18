@@ -27,19 +27,7 @@ trainy.head()
 trainx=scaled_data_train.drop('OUTCOME',axis=1)
 trainx.head()
 # 3.Random Forest
-param_grid = {'n_estimators': range(10,300,50),   #越大，模型的学习能力就会越强，模型也越容易过拟合
-              'max_depth':[3,5],
-              'min_samples_leaf':range(2,8,1),   #当某叶结点数目小于4，则和兄弟结点一起被剪枝。默认为1。
-              'min_samples_split': range(2,8,1), #当某节点的样本数少于min_samples_split时，不会继续再尝试选择最优特征来进行划分。 默认为2
-              'random_state':[1]}                #
-model=GridSearchCV(RandomForestClassifier(),param_grid, 
-                n_jobs=-1, 
-                refit=True,cv=10, verbose=3,
-                scoring = 'roc_auc',
-                error_score='raise',return_train_score=True)
-model.fit(trainx, trainy.astype('int'))
-print(model.best_params_)
-from sklearn.metrics import roc_auc_score as AUC
+
 
 rfc=RandomForestClassifier(max_depth= 3, min_samples_leaf=6, min_samples_split=2, n_estimators=160,
                            random_state=1,class_weight = 'balanced').fit(trainx, trainy.astype('int'))
