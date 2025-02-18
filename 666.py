@@ -126,7 +126,7 @@ if st.button("Predict"):
           
             f"According to our model, you have a low mortality risk. "
           
-            f"The model predicts that your probability of not having low mortality risk is {probability:.1f}%. "
+            f"The model predicts that your probability of  having low mortality risk is {probability:.1f}%. "
           
             )
           
